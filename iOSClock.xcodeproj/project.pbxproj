@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		9D7D6814278F2259007DD747 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D6813278F2259007DD747 /* AppDelegate.swift */; };
 		9D7D6816278F2259007DD747 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D6815278F2259007DD747 /* SceneDelegate.swift */; };
-		9D7D6818278F2259007DD747 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D6817278F2259007DD747 /* ViewController.swift */; };
 		9D7D681B278F2259007DD747 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D7D6819278F2259007DD747 /* Main.storyboard */; };
 		9D7D681D278F225B007DD747 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D7D681C278F225B007DD747 /* Assets.xcassets */; };
 		9D7D6820278F225B007DD747 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D7D681E278F225B007DD747 /* LaunchScreen.storyboard */; };
+		9D7D682B27906304007DD747 /* WorldClockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D682A27906304007DD747 /* WorldClockTableViewCell.swift */; };
+		9D7D682D279063C0007DD747 /* WorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D682C279063C0007DD747 /* WorldClockViewController.swift */; };
+		9D7D682F27906506007DD747 /* TimeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D682E27906506007DD747 /* TimeItem.swift */; };
+		9D7D683427906E99007DD747 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D683327906E99007DD747 /* CityViewController.swift */; };
+		9D7D683627907539007DD747 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D683527907539007DD747 /* CityTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9D7D6810278F2259007DD747 /* iOSClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7D6813278F2259007DD747 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D7D6815278F2259007DD747 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9D7D6817278F2259007DD747 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9D7D681A278F2259007DD747 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D7D681C278F225B007DD747 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D7D681F278F225B007DD747 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D7D6821278F225B007DD747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D7D682A27906304007DD747 /* WorldClockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockTableViewCell.swift; sourceTree = "<group>"; };
+		9D7D682C279063C0007DD747 /* WorldClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockViewController.swift; sourceTree = "<group>"; };
+		9D7D682E27906506007DD747 /* TimeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimeItem.swift; path = iOSClock/Model/TimeItem.swift; sourceTree = SOURCE_ROOT; };
+		9D7D683327906E99007DD747 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
+		9D7D683527907539007DD747 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +66,33 @@
 			children = (
 				9D7D6813278F2259007DD747 /* AppDelegate.swift */,
 				9D7D6815278F2259007DD747 /* SceneDelegate.swift */,
-				9D7D6817278F2259007DD747 /* ViewController.swift */,
 				9D7D6819278F2259007DD747 /* Main.storyboard */,
+				9D7D68302790650A007DD747 /* Model */,
+				9D7D682927905C25007DD747 /* Controller */,
 				9D7D681C278F225B007DD747 /* Assets.xcassets */,
 				9D7D681E278F225B007DD747 /* LaunchScreen.storyboard */,
 				9D7D6821278F225B007DD747 /* Info.plist */,
 			);
 			path = iOSClock;
+			sourceTree = "<group>";
+		};
+		9D7D682927905C25007DD747 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9D7D682C279063C0007DD747 /* WorldClockViewController.swift */,
+				9D7D682A27906304007DD747 /* WorldClockTableViewCell.swift */,
+				9D7D683327906E99007DD747 /* CityViewController.swift */,
+				9D7D683527907539007DD747 /* CityTableViewCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9D7D68302790650A007DD747 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9D7D682E27906506007DD747 /* TimeItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +166,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D7D6818278F2259007DD747 /* ViewController.swift in Sources */,
+				9D7D682F27906506007DD747 /* TimeItem.swift in Sources */,
+				9D7D683627907539007DD747 /* CityTableViewCell.swift in Sources */,
+				9D7D682B27906304007DD747 /* WorldClockTableViewCell.swift in Sources */,
 				9D7D6814278F2259007DD747 /* AppDelegate.swift in Sources */,
 				9D7D6816278F2259007DD747 /* SceneDelegate.swift in Sources */,
+				9D7D682D279063C0007DD747 /* WorldClockViewController.swift in Sources */,
+				9D7D683427906E99007DD747 /* CityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
