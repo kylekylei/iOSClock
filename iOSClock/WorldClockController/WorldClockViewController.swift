@@ -10,7 +10,7 @@ import UIKit
 class WorldClockViewController: UIViewController {
     var cities = [City]() {
         didSet {
-            editButtonSetting()
+            AppDelegate.editButtonSetting(cities, editButton)
             City.saveCities(cities)
         }
     }
@@ -19,22 +19,14 @@ class WorldClockViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
-    func editButtonSetting() {
-        if cities.isEmpty {
-            editButton.isEnabled = false
-            editButton.tintColor = .clear
-        } else {
-            editButton.isEnabled = true
-            editButton.tintColor = nil
-        }
-    }
+
     
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let cities = City.loadCities() {
-            self .cities = cities
+            self.cities = cities
         }
                
         navigationItem.hidesBackButton = true
@@ -42,7 +34,7 @@ class WorldClockViewController: UIViewController {
         
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = .gray
-        editButtonSetting()
+        AppDelegate.editButtonSetting(cities, editButton)
         
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             self.tableView.isEditing ? nil : self.tableView.reloadData()
@@ -57,7 +49,7 @@ class WorldClockViewController: UIViewController {
         tableView.reloadData()
     
     }
-    
+        
      @IBAction func unwindToWorldView(_ unwindSegue: UIStoryboardSegue) {
          if let sourceViewController = unwindSegue.source as? CityViewController,
             let city = sourceViewController.city {

@@ -6,14 +6,33 @@
 //
 
 import UIKit
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    static func editButtonSetting(_ array: [Any], _ editButton: UIBarButtonItem) {
+        if array.isEmpty {
+            editButton.isEnabled = false
+            editButton.tintColor = .clear
+        } else {
+            editButton.isEnabled = true
+            editButton.tintColor = nil
+        }        
+    }
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Override point for customization after application launch.   
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
+            if granted {
+                print("Success")
+            } else {
+                print("Failed")
+            }
+        }
+        
         return true
     }
 
