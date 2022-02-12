@@ -35,14 +35,19 @@ class TimerViewController: UIViewController {
     var hour = 0
     var minute = 0
     var second = 0
-        var timeInterval: Int {
+    var timeInterval: Int {
         hour * 3600 + minute * 60 + second
     }
     var countdownInterval: Double = 0
     var resumeInterval: Double = 0
     var endTime = Date()
     
-    var timer: Timer?
+    var timer = Timer() {
+        didSet {
+            RunLoop.current.add(timer, forMode: .common)
+            RunLoop.current.run()
+        }
+    }
     
     var center: CGPoint {
         CGPoint(x: progressView.center.x, y: progressView.center.y - 50)
@@ -61,17 +66,7 @@ class TimerViewController: UIViewController {
     }()
     
     var uuidString = ""
-    
-    func timerFinishNotification() {
-        let content = UNMutableNotificationContent()
-        content.body = "計時器"
-        content.sound = UNNotificationSound.default
-        let request = UNNotificationRequest(identifier: "notificationByTimer", content: content, trigger: nil)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: {error in
-            print("成功建立通知...")
-        })
-    }
-    
+ 
     
     func createNotificationNow() {
         let content = UNMutableNotificationContent()
@@ -188,19 +183,19 @@ class TimerViewController: UIViewController {
                 cancel()
             }
         })
-        timer?.fire()
+        timer.fire()
    
 
     }
     
     func pause() {
-        timer?.invalidate()
+        timer.invalidate()
         isRunning = false
         resumeInterval = countdownInterval
     }
     
     func cancel() {
-        timer?.invalidate()
+        timer.invalidate()
         isReset = true
         isRunning = false
 
