@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class AlarmViewController: UIViewController, UNUserNotificationCenterDelegate {
+class AlarmViewController: UIViewController {
     
     var alarmClocks = [AlarmClock]() {
         didSet {
@@ -21,6 +21,46 @@ class AlarmViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    
+   
+    
+    func createNotifiction(alarmClock: AlarmClock) {
+        
+        let content = UNMutableNotificationContent()
+        content.title = "K Clock"
+        content.body = alarmClock.label
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(alarmClock.sound).mp3"))
+        
+        if alarmClock.isOn == true {
+            for weekday in alarmClock.weekdaySet {
+                var dataComponets = Calendar.current.dateComponents([.hour, .minute], from: alarmClock.time)
+                dataComponets.weekday = weekday
+
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dataComponets, repeats: true)
+                let request = UNNotificationRequest(identifier: "set\(alarmIndex)", content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+                    print("成功建立\(request.identifier)")
+                })
+                
+                
+                alarmIndex += 1
+            }
+        } else {
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: ["set\(alarmIndex)"])
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["set\(alarmIndex)"])
+        }
+    }
+    
+    func removeNotification(at alarmIndex: Int) {
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: ["set\(alarmIndex)"])
+    }
+   
+    
+
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,43 +80,8 @@ class AlarmViewController: UIViewController, UNUserNotificationCenterDelegate {
         
         tableView.allowsSelectionDuringEditing = true
         
-        //Local notification
-          
-        UNUserNotificationCenter.current().delegate = self
-    }
-    
-    func createNotifiction(time: Date, label: String, sound: String, weekdaySet: [Int]) {
-        
-        let content = UNMutableNotificationContent()
-        content.title = "K Clock"
-        content.body = label
-        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(sound).mp3"))
-        
-        for weekday in weekdaySet {
-            var dataComponets = Calendar.current.dateComponents([.hour, .minute], from: time)
-            dataComponets.weekday = weekday
 
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dataComponets, repeats: false)
-            let request = UNNotificationRequest(identifier: "set\(alarmIndex)", content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            
-            alarmIndex += 1
-        }
     }
-    
-    func removeNotification(at alarmIndex: Int) {
-        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: ["set\(alarmIndex)"])
-    }
-   
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.sound, .banner, .list, .badge])
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        UIApplication.shared.applicationIconBadgeNumber = 0
-    }
-
     
     
     @IBAction func editList(_ sender: UIBarButtonItem) {
@@ -113,10 +118,12 @@ class AlarmViewController: UIViewController, UNUserNotificationCenterDelegate {
                 let indexPath = IndexPath(row: 0, section: 1)
                 tableView.insertRows(at: [indexPath], with: .automatic)
             }
+            createNotifiction(alarmClock: alarmClock)
         }
         tableView.isEditing = false
         editButton.title =  "Edit"    
         tableView.reloadData()
+      
     }
 
 }
@@ -152,9 +159,7 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.enableSwitch.isHidden = false
                 cell.enableSwitch.isOn = alarmClock.isOn ? true : false
             }
-            if alarmClock.isOn == true {
-                self.createNotifiction(time: alarmClock.time, label: alarmClock.label , sound: alarmClock.sound, weekdaySet: alarmClock.weekdaySet)
-            }            
+            
             
             cell.editingAccessoryType = .disclosureIndicator
             cell.backgroundColor = .clear
@@ -231,5 +236,4 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
-
 

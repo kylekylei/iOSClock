@@ -56,7 +56,7 @@ struct AlarmClock: Codable {
         var weekdaySet = [Int]()
         for (index, repeatDay) in repeatDays.enumerated() {
             if repeatDay.isRepeat == true {
-                weekdaySet.append(index)
+                weekdaySet.append(index+1)
             }
         }
         return weekdaySet
