@@ -22,7 +22,6 @@ class AlarmViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
-   
     
     func createNotifiction(alarmClock: AlarmClock) {
         
@@ -55,7 +54,6 @@ class AlarmViewController: UIViewController {
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: ["set\(alarmIndex)"])
     }
    
-    
 
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -64,6 +62,8 @@ class AlarmViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        overrideUserInterfaceStyle = .dark
         
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.dataSource = self
@@ -79,8 +79,7 @@ class AlarmViewController: UIViewController {
         }
         
         tableView.allowsSelectionDuringEditing = true
-        
-
+     
     }
     
     

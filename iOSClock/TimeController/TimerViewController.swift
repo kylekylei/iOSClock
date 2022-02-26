@@ -35,9 +35,7 @@ class TimerViewController: UIViewController {
     var hour = 0
     var minute = 0
     var second = 0
-    var timeInterval: Int {
-        hour * 3600 + minute * 60 + second
-    }
+    lazy var timeInterval: Int =  hour * 3600 + minute * 60 + second
     var countdownInterval: Double = 0
     var resumeInterval: Double = 0
     var endTime = Date()
@@ -49,12 +47,8 @@ class TimerViewController: UIViewController {
         }
     }
     
-    var center: CGPoint {
-        CGPoint(x: progressView.center.x, y: progressView.center.y - 50)
-    }
-    var radius: CGFloat {
-        center.x - 15
-    }
+    lazy var center: CGPoint =  CGPoint(x: progressView.center.x, y: progressView.center.y - 50)
+    lazy var radius: CGFloat =  center.x - 15
     
     let progressBar: CAShapeLayer = {
         let shape = CAShapeLayer()
@@ -83,6 +77,7 @@ class TimerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .dark
         
         updateUI()
         timePicker.delegate = self

@@ -10,6 +10,8 @@ import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    
     
     static func editButtonSetting(_ array: [Any], _ editButton: UIBarButtonItem) {
         if array.isEmpty {

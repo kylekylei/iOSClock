@@ -11,6 +11,12 @@ class AnalogViewController: UIViewController {
 
     @IBOutlet weak var digitTimeLabel: UILabel!
     var center: CGPoint?
+    lazy var radius: CGFloat = center!.x - 10
+    lazy var centerX = center!.x
+    lazy var centerY = center!.y
+    lazy var centerY2 = centerY - 64
+    let minuteRadius: CGFloat = 50
+       
     var mainTimeInterval: TimeInterval = 0 {
         didSet {
             let secondAngle = CGFloat(mainTimeInterval.truncatingRemainder(dividingBy: 60) * 6)
@@ -53,13 +59,7 @@ class AnalogViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .clear
         lapWatchView.isHidden = true
-        
-        let radius: CGFloat = center!.x - 10
-        let centerX = center!.x
-        let centerY = center!.y
-        let centerY2 = centerY - 64
-        let minuteRadius: CGFloat = 50
-        
+
         let minutePointer: CAShapeLayer = {
             let shape = CAShapeLayer()
             let line: CAShapeLayer = {
@@ -202,8 +202,6 @@ class AnalogViewController: UIViewController {
             }
             return  shape
         }
-
-
 
     }
     

@@ -15,8 +15,7 @@ class RepeatTableViewController: UITableViewController {
         
         tableView.allowsMultipleSelection = true
    
-    }
-   
+    }   
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

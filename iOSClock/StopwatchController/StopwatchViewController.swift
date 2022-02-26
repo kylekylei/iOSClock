@@ -63,11 +63,7 @@ class StopwatchViewController: UIViewController {
     }
     
     
-    var laps = [Lap]() {
-        didSet {
-//            Lap.saveLaps(laps)
-        }
-    }
+    var laps = [Lap]()
     var lapStartTime: Date?
     var lapTimeInterval: TimeInterval = 0
     var lapRestingTimeeInterval: TimeInterval = 0
@@ -100,20 +96,18 @@ class StopwatchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        overrideUserInterfaceStyle = .dark
+        
         if let laps = Lap.loadLaps() {
             self.laps = laps
         }
-        
-        
         
         tableView.delegate = self
         tableView.dataSource = self
         stopWatchScrollView.delegate = self
         
         updateUI()
-
-
-
     }
     
     @IBAction func toggleStopwatch(_ sender: UIButton) {

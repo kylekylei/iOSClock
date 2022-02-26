@@ -14,16 +14,14 @@ class WorldClockViewController: UIViewController {
             City.saveCities(cities)
         }
     }
-    
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var editButton: UIBarButtonItem!
-    
-
-    
+    @IBOutlet weak var editButton: UIBarButtonItem!    
         
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        overrideUserInterfaceStyle = .dark
         
         if let cities = City.loadCities() {
             self.cities = cities

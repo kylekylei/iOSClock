@@ -63,18 +63,7 @@ class EditAlarmTableViewController: UITableViewController {
     @IBAction func deleteCell(_ sender: UIButton) {
         willDelete = true
     }
-    
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-////        let cell = staticTableView.cellForRow(at: indexPath)
-//        
-//        if indexPath.row == 1 {
-//            guard let controller = storyboard?.instantiateViewController(withIdentifier: "\(LabelViewController.self)") else { return }
-//            navigationController?.pushViewController(controller, animated: true)
-//        }
-//    }
-
-    
+        
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
